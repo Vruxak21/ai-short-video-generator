@@ -21,6 +21,12 @@ function SelectDuration({ onUserSelect }) {
                     <SelectValue placeholder="Select Duration" />
                 </SelectTrigger>
                 <SelectContent className="bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                <SelectItem
+                        value="15 Seconds"
+                        className="text-lg p-3 hover:bg-gray-100 focus:bg-gray-100 rounded-md transition-colors duration-200"
+                    >
+                        15 Seconds
+                    </SelectItem>
                     <SelectItem
                         value="30 Seconds"
                         className="text-lg p-3 hover:bg-gray-100 focus:bg-gray-100 rounded-md transition-colors duration-200"
