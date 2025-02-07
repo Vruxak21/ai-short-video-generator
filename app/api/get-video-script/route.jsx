@@ -1,4 +1,4 @@
-import { chatSession } from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/configs/AiModel";
+import { chatSession } from "@/configs/AiModel";
 import { NextResponse } from "next/server";
 
 export async function POST(req){

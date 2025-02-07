@@ -5,13 +5,14 @@ import SelectStyle from './_components/SelectStyle';
 import SelectDuration from './_components/SelectDuration';
 import { Button } from '../../../components/ui/button';
 import axios from 'axios';
-import CustomLoading from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/app/dashboard/create-new/_components/CustomLoading';
+import CustomLoading from '@/app/dashboard/create-new/_components/CustomLoading';
 import { v4 as uuidv4 } from 'uuid';
-import { VideoDataContext } from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/app/_context/VideoDataContext';
-import PlayerDialog from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/app/dashboard/_components/PlayerDialog';
+import { VideoDataContext } from '@/app/_context/VideoDataContext';
+import PlayerDialog from '@/app/dashboard/_components/PlayerDialog';
 import { useUser } from '@clerk/nextjs';
-import { VideoData } from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/configs/schema';
-import { db } from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/configs/db';
+import { VideoData } from '@/configs/schema';
+import { db } from '@/configs/db';
+import { useRouter } from 'next/router';
 
 function CreateNew() {
     const [formData, setFormData] = useState([]);
@@ -20,12 +21,13 @@ function CreateNew() {
     const [audioFileUrl, setAudioFileUrl] = useState();
     const [captions, setCaptions] = useState();
     const [imageList, setImageList] = useState([]);
+    const [playVideo, setPlayVideo] = useState(false); // Initially set to false
+    const [videoId, setVideoId] = useState(null); // Initially set to null
     const { videoData, setVideoData } = useContext(VideoDataContext);
-    const {user}=useUser();
+    const { user } = useUser();
 
     const onHandleInputChange = (fieldName, fieldValue) => {
         console.log(fieldName, fieldValue);
-
         setFormData(prev => ({
             ...prev,
             [fieldName]: fieldValue
@@ -33,6 +35,9 @@ function CreateNew() {
     };
 
     const onCreateClickHandler = () => {
+        // Reset playVideo and videoId when starting a new video generation
+        setPlayVideo(false);
+        setVideoId(null);
         GetVideoScript();
     };
 
@@ -111,19 +116,19 @@ function CreateNew() {
 
     const GenerateImage = async (videoScriptData) => {
         let images = [];
-
+    
         if (!Array.isArray(videoScriptData)) {
             console.error('Invalid video script data');
             setLoading(false);
             return;
         }
-
+    
         for (const element of videoScriptData) {
             try {
                 const resp = await axios.post('/api/generate-image', {
                     prompt: element.imagePrompt
                 });
-                console.log(`Image URL for prompt "${element.imagePrompt}":`, resp.data.result);
+                console.log(`Image URL for prompt "${element.imagePrompt}":`, resp.data.result); // Corrected line
                 images.push(resp.data.result);
             } catch (e) {
                 console.log('Error generating image:', e);
@@ -139,11 +144,10 @@ function CreateNew() {
 
     useEffect(() => {
         console.log(videoData);
-        if(Object.keys(videoData).length === 4) 
-        {
+        if (Object.keys(videoData).length === 4) {
             SaveVideoData(videoData);
         }
-    },[videoData]);
+    }, [videoData]);
 
     const SaveVideoData = async (videoData) => {
         setLoading(true);
@@ -165,9 +169,15 @@ function CreateNew() {
             };
     
             // Insert video data into the database
-            const result = await db.insert(VideoData).values(dataToSave);
-            
-            console.log('Video data saved successfully', result);
+            const result = await db.insert(VideoData).values(dataToSave).returning(); // Use .returning() to get the inserted record
+    
+            if (result && result.length > 0) {
+                console.log('Video data saved successfully', result);
+                setVideoId(result[0].id); // Update videoId with the newly generated video's ID
+                setPlayVideo(true); // Set playVideo to true to show the PlayerDialog
+            } else {
+                console.error('Failed to save video data: No result returned');
+            }
         } catch (error) {
             console.error('Error saving video data:', error);
         } finally {
@@ -178,7 +188,6 @@ function CreateNew() {
     return (
         <div className='md:px-20'>
             <h2 className='font-bold text-4xl text-primary text-center'>Create new</h2>
-
             <div className='mt-10 shadow-md p-10'>
                 <SelectTopic onUserSelect={onHandleInputChange} />
                 <SelectStyle onUserSelect={onHandleInputChange} />
@@ -186,6 +195,7 @@ function CreateNew() {
                 <Button className='mt-10 w-full' onClick={onCreateClickHandler}>Create Short Video</Button>
             </div>
             <CustomLoading loading={loading} />
+            {playVideo && videoId && <PlayerDialog playVideo={playVideo} videoId={videoId} onClose={() => setPlayVideo(false)} />}
         </div>
     );
 }

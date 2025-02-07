@@ -6,7 +6,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/@/components/ui/select";
+} from "@/@/components/ui/select";
 
 function SelectDuration({ onUserSelect }) {
     return (

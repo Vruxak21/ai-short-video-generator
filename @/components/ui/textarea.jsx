@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/lib/utils"
+import { cn } from "@/lib/utils"
 
 const Textarea = React.forwardRef(({ className, ...props }, ref) => {
   return (

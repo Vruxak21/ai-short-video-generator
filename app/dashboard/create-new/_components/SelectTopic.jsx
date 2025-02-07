@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react'
-import { Textarea } from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/@/components/ui/textarea"
+import { Textarea } from "@/@/components/ui/textarea"
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/@/components/ui/select"
+} from "@/@/components/ui/select"
 
 function SelectTopic({ onUserSelect }) {
     const options = ['Custom Prompt', 'AI Random Prompt', 'Scary Story', 'Historical Story', 'Bed Time Story', 'Motivational Story', 'Fun Facts']

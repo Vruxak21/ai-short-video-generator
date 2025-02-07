@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Header from './_components/Header'
 import SideNav from './_components/SideNav'
-import { VideoDataContext } from 'C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/app/_context/VideoDataContext'
+import { VideoDataContext } from '@/app/_context/VideoDataContext'
 
 function DashboardLayout({children}) {
     const [videoData,setVideoData]=useState([]);

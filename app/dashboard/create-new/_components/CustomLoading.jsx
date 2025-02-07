@@ -3,7 +3,7 @@ import {
   AlertDialog,
   AlertDialogOverlay,
   AlertDialogTitle,
-} from "C:/Users/patel/OneDrive/Documents/Nirma University/Semester 4/FSWD/ai-short-video-generator/@/components/ui/alert-dialog";
+} from "@/@/components/ui/alert-dialog";
 import Image from "next/image";
 
 function CustomLoading({ loading }) {
