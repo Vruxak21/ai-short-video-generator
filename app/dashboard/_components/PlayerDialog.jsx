@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/@/components/ui/dialog";
+} from "../../../@/components/ui/dialog";
 import RemotionVideo from "./RemotionVideo";
 import { Button } from "../../../@/components/ui/button";
 import { db } from "../../../configs/db";

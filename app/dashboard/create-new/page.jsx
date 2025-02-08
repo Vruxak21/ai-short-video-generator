@@ -5,13 +5,13 @@ import SelectStyle from './_components/SelectStyle';
 import SelectDuration from './_components/SelectDuration';
 import { Button } from '../../../@/components/ui/button';
 import axios from 'axios';
-import CustomLoading from '@/app/dashboard/create-new/_components/CustomLoading';
+import CustomLoading from '../../../app/dashboard/create-new/_components/CustomLoading';
 import { v4 as uuidv4 } from 'uuid';
-import { VideoDataContext } from '@/app/_context/VideoDataContext';
-import PlayerDialog from '@/app/dashboard/_components/PlayerDialog';
+import { VideoDataContext } from '../../../app/_context/VideoDataContext';
+import PlayerDialog from '../../../app/dashboard/_components/PlayerDialog';
 import { useUser } from '@clerk/nextjs';
-import { VideoData } from '@/configs/schema';
-import { db } from '@/configs/db';
+import { VideoData } from '../../../configs/schema';
+import { db } from '../../../configs/db';
 import { useRouter } from 'next/router';
 
 function CreateNew() {

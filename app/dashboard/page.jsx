@@ -4,10 +4,10 @@ import { Button } from '../../@/components/ui/button'
 import EmptyState from './_components/EmptyState'
 import Link from 'next/link'
 import { useUser } from '@clerk/nextjs'
-import { db } from '@/configs/db'
-import { VideoData } from '@/configs/schema'
+import { db } from '../../configs/db'
+import { VideoData } from '../../configs/schema'
 import { eq } from 'drizzle-orm'
-import VideoList from '@/app/dashboard/_components/VideoList'
+import VideoList from '../../app/dashboard/_components/VideoList'
 
 const Dashboard = () => {
     const { user } = useUser();

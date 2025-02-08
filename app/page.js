@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { Play, Video, Image as ImageIcon, Sparkles } from "lucide-react";
 import { useUser, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
