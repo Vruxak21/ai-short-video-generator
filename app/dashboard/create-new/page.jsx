@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import SelectTopic from './_components/SelectTopic';
 import SelectStyle from './_components/SelectStyle';
 import SelectDuration from './_components/SelectDuration';
-import { Button } from '../../../components/ui/button';
+import { Button } from '../../../@/components/ui/button';
 import axios from 'axios';
 import CustomLoading from '@/app/dashboard/create-new/_components/CustomLoading';
 import { v4 as uuidv4 } from 'uuid';

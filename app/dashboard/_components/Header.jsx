@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../../../components/ui/button'
+import { Button } from '../../../@/components/ui/button'
 import Image from 'next/image'
 import { UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
