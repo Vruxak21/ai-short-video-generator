@@ -3,7 +3,7 @@ import {
   AlertDialog,
   AlertDialogOverlay,
   AlertDialogTitle,
-} from "@/@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 import Image from "next/image";
 
 function CustomLoading({ loading }) {
