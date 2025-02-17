@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { 
   AbsoluteFill, 
   Audio, 
@@ -19,10 +19,13 @@ function RemotionVideo({
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
 
-  const getDurationFrame = () => {
+  useEffect(() => {
     const duration = (captions[captions?.length - 1]?.end / 1000) * fps;
     setDurationInFrame(duration);
-    return duration;
+  }, [captions, fps, setDurationInFrame]);
+
+  const getDurationFrame = () => {
+    return (captions[captions?.length - 1]?.end / 1000) * fps;
   };
 
   const getCurrentCaptions = () => {

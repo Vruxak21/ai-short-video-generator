@@ -102,7 +102,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center p-4 mt-12">
+      <footer className="text-center p-4 mt-2">
         <p className="text-gray-600">
           © {new Date().getFullYear()} Made with ❤️ in India by <span className="font-semibold">Vruxak Patel</span>
         </p>

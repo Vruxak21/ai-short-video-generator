@@ -34,8 +34,8 @@ const Dashboard = () => {
 
     return (
         <div>
-            <div className='justify-between flex items-center'>
-                <h2 className='font-bold text-2xl text-primary'>Dashboard</h2>
+            <div className='justify-between flex items-center mt-11'>
+                <h2 className='font-bold text-3xl text-primary'>Dashboard</h2>
                 {videoList.length === 0 && (
                     <Link href={'/dashboard/create-new'}>
                         <Button>+ Create New</Button>
